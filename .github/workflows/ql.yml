@@ -32,8 +32,10 @@ jobs:
 
     - name: Build project
       run: |
+        dotnet build
+        
         # Add your custom build steps here
-        dotnet build --configuration Release
+        # dotnet build --configuration Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
