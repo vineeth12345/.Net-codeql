@@ -28,14 +28,14 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: csharp
-        build-mode: none
+        build-mode: manual #none
 
-    # - name: Build project
-    #   run: |
-    #     dotnet build
+    - name: Build project
+      run: |
+        dotnet build
 
-    #     # Add your custom build steps here
-    #     # dotnet build --configuration Release
+        # Add your custom build steps here
+        # dotnet build --configuration Release
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
