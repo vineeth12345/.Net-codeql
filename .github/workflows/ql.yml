@@ -28,17 +28,18 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: csharp
-        #build-mode: autobuild #none
+        build-mode: manual #autobuild #none
 
-    # - name: Build project
-    #   run: |
-    #     dotnet build
+    - name: Build project
+      run: |
+        make bootstrap
+        make release
 
     #     # Add your custom build steps here
     #     # dotnet build --configuration Release
 
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
+    # - name: Autobuild
+    #   uses: github/codeql-action/autobuild@v3
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
