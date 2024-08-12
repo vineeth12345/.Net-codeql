@@ -1,0 +1,39 @@
+name: CodeQL
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+#   schedule:
+#     - cron: '0 0 * * 1'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Detect languages
+      id: detect-languages
+      run: |
+        languages=$(github-linguist)
+        echo "Detected languages: $languages"
+        echo "::set-output name=languages::$languages"
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: ${{ steps.detect-languages.outputs.languages }}
+
+    - name: Build project
+      run: |
+        # Add your custom build steps here
+        # For example, for a .NET project:
+        dotnet build --configuration Release
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
