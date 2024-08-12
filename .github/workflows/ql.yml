@@ -1,0 +1,81 @@
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+#   schedule:
+#     - cron: '0 0 * * 1'
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: self-hosted  # Ensure this matches your self-hosted runner's label
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    strategy:
+      fail-fast: false
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: csharp
+        build-mode: none
+
+    - name: Build project
+      run: |
+        # Add your custom build steps here
+        dotnet build --configuration Release
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+      with:
+        category: csharp
+
+
+
+# name: "CodeQL"
+
+# on:
+#   push:
+#     branches: [ main ]
+#   pull_request:
+#     branches: [ main ]
+    
+# jobs:
+#   analyze:
+#     name: Analyze
+#     runs-on: code-scannin #[ self-hosted, code-scanning ]
+#     permissions:
+#      actions: read
+#      contents: read
+#      security-events: write
+
+#     strategy:
+#       fail-fast: false
+    
+#     steps:
+#     - name: Checkout repository
+#       uses: actions/checkout@v4
+
+#     - name: Initialize CodeQL
+#       uses: github/codeql-action/init@v3
+#       with:
+#         languages: csharp
+#         build-mode: none
+
+#     - name: Autobuild
+#       uses: github/codeql-action/autobuild@v3
+
+#     - name: Perform CodeQL Analysis
+#       uses: github/codeql-action/analyze@v3
+#       with:
+#         category: csharp
