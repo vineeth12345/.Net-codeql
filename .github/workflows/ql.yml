@@ -28,13 +28,13 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: csharp
-        build-mode: manual #autobuild #none
+        build-mode: none #manual #autobuild #none
 
-    - name: Build project
-      run: |
-        make bootstrap
-        make release
-
+    # - name: Build project
+    #   run: |
+    #     make bootstrap
+    #     make release
+        #https://docs.github.com/en/code-security/code-scanning/creating-an-advanced-setup-for-code-scanning/codeql-code-scanning-for-compiled-languages#codeql-build-modes
     #     # Add your custom build steps here
     #     # dotnet build --configuration Release
 
