@@ -11,7 +11,7 @@ on:
 jobs:
   analyze:
     name: Analyze
-    runs-on: self-hosted  # Ensure this matches your self-hosted runner's label
+    runs-on: ubuntu-latest # Ensure this matches your self-hosted runner's label
     permissions:
       actions: read
       contents: read
